@@ -21,7 +21,22 @@
   </table>
 
   <script>
-    
+    fetch("/mariaDB")
+      .then(response => response.json())
+      .then(data => {
+        const productList = document.getElementById('productList');
+        data.forEach(product => {
+          const row = `
+            <tr>
+              <td>${product.number}</td>
+              <td>${product.name}</td>
+              <td>${product.price}</td>
+            </tr>
+          `;
+          productList.innerHTML += row;
+        });
+      })
+      .catch(error => console.error('Error fetching data:', error));
   </script>
 
 </body>
