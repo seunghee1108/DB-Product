@@ -9,8 +9,8 @@ const xhrHtmlPath = "./xhr.html"
 const connection = mysql.createServer({
   host: "localhost",
   user: "root",
-  password: "",
-  database: "",
+  password: "1108",
+  database: "product",
 });
 
 const server = http.createServer((req, res) => {
