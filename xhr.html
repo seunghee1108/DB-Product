@@ -20,8 +20,33 @@
   </table>
 
   <script>
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:3000/mariaDB", true);
+    xhr.onload = function () {
+      if (this.status === 200) {
+        const productList = document.getElementById("productList");
+        const data = JSON.parse(this.responseText);
 
+        data.forEach(product => {
+          const row = `
+          <tr>
+            <td>${product.number}</td>
+            <td>${product.name}</td>
+            <td>${product.price}</td>
+          </tr>
+          `;
+          productList.innerHTML += row;
+        });
+        } else {
+          console.error('Failed to fetch data');
+        }
+      };
+      xhr.onerror = function() {
+        console.error('Error occurred while fetching data.');
+      };
+      xhr.send();
+    
   </script>
-  
+
 </body>
 </html>
