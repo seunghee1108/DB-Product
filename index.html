@@ -21,11 +21,14 @@
   </table>
 
   <script>
-    fetch("/mariaDB")
+    // 엔드포인트에서 데이터 가져옴
+    fetch("/product")
       .then(response => response.json())
       .then(data => {
         const productList = document.getElementById('productList');
+        // 각 상품에 대해 반복
         data.forEach(product => {
+          // 각 상품을 위한 테이블 행 생성
           const row = `
             <tr>
               <td>${product.number}</td>
@@ -33,6 +36,7 @@
               <td>${product.price}</td>
             </tr>
           `;
+          // 행을 상품 목록에 추가
           productList.innerHTML += row;
         });
       })
