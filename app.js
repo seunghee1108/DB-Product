@@ -4,13 +4,13 @@ import fs from "fs";
 const PORT = 3000;
 
 const fetchHtmlPath = "./index.html"
-const xhrHtmlPath = "./xhr.html"
+// const xhrHtmlPath = "./xhr.html"
 
 const connection = mysql.createServer({
   host: "localhost",
   user: "root",
   password: "1108",
-  database: "product",
+  database: "product",  // db 이름
 });
 
 const server = http.createServer((req, res) => {
