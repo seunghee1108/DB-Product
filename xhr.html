@@ -28,7 +28,8 @@
       if (this.status === 200) {
         const productList = document.getElementById("productList");
         const data = JSON.parse(this.responseText);
-
+      
+        // 상품정보
         data.forEach(product => {
           const row = `
           <tr>
