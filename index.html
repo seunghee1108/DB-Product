@@ -22,6 +22,23 @@
 
   <script>
     // 엔드포인트에서 데이터 가져옴
+    const server = http.createServer((req, res) => {
+  if (req.method === "GET" && req.url === "/") {
+    // 이 부분은 HTML 파일을 응답하는 부분으로 그대로 둡니다.
+    // ...
+  } else if (req.method === "GET" && req.url === "/product") {
+    const query = "SELECT * FROM product";
+
+    connection.query(query, (error, result) => {
+      if (error) {
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Internal Server Error" }));
+      } else {
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(result));
+      }
+    });
+  }
     fetch("/product")
       .then(response => response.json())
       .then(data => {
