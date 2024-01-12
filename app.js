@@ -5,7 +5,7 @@ import mysql from "mysql";
 const PORT = 3000;
 
 const fetchHtmlPath = "./index.html"
-// const xhrHtmlPath = "./xhr.html"
+const xhrHtmlPath = "./xhr.html"
 
 
 const connection = mysql.createConnection({  // createServer가 아닌 createConnection을 사용해야 합니다.
