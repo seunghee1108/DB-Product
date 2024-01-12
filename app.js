@@ -1,6 +1,10 @@
-import http from "http";
-import fs from "fs";
-import mysql from "mysql";
+// import http from "http";
+// import fs from "fs";
+// import mysql from "mysql";
+const http = require("http");
+const fs = require("fs");
+const mysql = require("mysql")
+
 
 const PORT = 3000;
 
