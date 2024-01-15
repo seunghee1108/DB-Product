@@ -29,6 +29,7 @@ const server = http.createServer((req, res) => {
     });
   } else if (req.method === "GET" && req.url === "/product") {
     const query = "SELECT * FROM product";
+    // 테이블 product
 
     connection.query(query, (error, result) => {
       if (error) {
