@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Product List</title>
 </head>
+
 <body>
-  <h1>Product-List-With-XHR</h1>
-  
-  <table>
+
+  <h1>Product List with xhr</h1>
+
+  <table border="1">
     <thead>
       <tr>
         <th>Number</th>
@@ -16,40 +18,43 @@
         <th>Price</th>
       </tr>
     </thead>
-    <tbody id="productList"></tbody>
+    <tbody id="productList">
+    </tbody>
   </table>
 
-  <script>
-    // XMLHttpRequest 객체 생성
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:3000/product", true);
-     // 데이터 로드가 완료되면 실행될 함수
-    xhr.onload = function () {
-      if (this.status === 200) {
-        const productList = document.getElementById("productList");
-        const data = JSON.parse(this.responseText);
-      
-        // 상품정보
-        data.forEach(product => {
-          const row = `
-          <tr>
-            <td>${product.number}</td>
-            <td>${product.name}</td>
-            <td>${product.price}</td>
-          </tr>
-          `;
-          productList.innerHTML += row;
-        });
-        } else {
-          console.error('Failed to fetch data');
-        }
-      };
-      xhr.onerror = function() {
-        console.error('Error occurred while fetching data.');
-      };
-      xhr.send();
-    
-  </script>
+  
+   <script>
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'http://localhost:3000/product', true);
+
+  xhr.onload = function () {
+    if (this.status === 200) {
+      const productList = document.getElementById('productList');
+      const data = JSON.parse(this.responseText);
+
+      // 모든 행에 대한 전체 HTML 문자열 빌드
+      const rowsHTML = data.map(product => `
+        <tr>
+          <td>${product.number}</td> 
+          <td>${product.name}</td>    
+          <td>${product.price}</td>   
+        </tr>
+      `).join('');
+
+      // innerHTML을 전체 HTML 문자열로 한 번에 설정
+      productList.innerHTML = rowsHTML;
+    } else {
+      console.error('데이터 가져오기 실패');
+    }
+  };
+
+  xhr.onerror = function () {
+    console.error('데이터를 가져오는 중에 오류가 발생했습니다.');
+  };
+
+  xhr.send();
+</script>
+
 
 </body>
 </html>
