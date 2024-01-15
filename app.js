@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "1108",
-  database: "dbproject",
+  database: "dbproject", // 데이터베이스 이름
 });
 
 const server = http.createServer((req, res) => {
