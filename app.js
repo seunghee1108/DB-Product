@@ -1,18 +1,13 @@
-// import http from "http";
-// import fs from "fs";
-// import mysql from "mysql";
 const http = require("http");
 const fs = require("fs");
-const mysql = require("mysql")
-
+const mysql = require("mysql");
 
 const PORT = 3000;
 
-const fetchHtmlPath = "./index.html"
-const xhrHtmlPath = "./xhr.html"
+const fetchHtmlPath = "./index.html";
+const xhrHtmlPath = "./xhr.html";
 
-
-const connection = mysql.createConnection({  // createServer가 아닌 createConnection을 사용해야 합니다.
+const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "1108",
@@ -20,8 +15,9 @@ const connection = mysql.createConnection({  // createServer가 아닌 createCon
 });
 
 const server = http.createServer((req, res) => {
-  if (req.method === "GET" && req.url === "/") {  // res.method 대신 req.method을 사용해야 합니다.
-    fs.readFile(fetchHtmlPath, 'utf8', (err, data) => {
+  if (req.method === "GET" && req.url === "/") {
+
+    fs.readFile(fetchHtmlPath, "utf8", (err, data) => {
       if (err) {
         res.writeHead(500, { "Content-Type": "application/json" });
         res.end(JSON.stringify({ error: "Internal Server Error" }));
